@@ -41,20 +41,19 @@ public class ClientMessageDecoder extends ByteToMessageDecoder {
 
         short command = in.readUnsignedByte();
         int messageId = in.readUnsignedShort();
+        int codeOrLength = in.readUnsignedShort();
 
         MessageBase message;
         if (command == Command.RESPONSE) {
-            int responseCode = in.readUnsignedShort();
-            message = new ResponseMessage(messageId, responseCode);
+            message = new ResponseMessage(messageId, codeOrLength);
         } else {
-            int length = in.readUnsignedShort();
 
-            if (in.readableBytes() < length) {
+            if (in.readableBytes() < codeOrLength) {
                 in.resetReaderIndex();
                 return;
             }
 
-            ByteBuf buf = in.readSlice(length);
+            ByteBuf buf = in.readSlice(codeOrLength);
             switch (command) {
                 case GET_ENHANCED_GRAPH_DATA :
                 case GET_PROJECT_BY_CLONE_CODE :

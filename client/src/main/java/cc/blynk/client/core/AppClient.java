@@ -1,12 +1,13 @@
 package cc.blynk.client.core;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.net.ssl.SSLException;
 
-import cc.blynk.client.handlers.ClientReplayingMessageDecoder;
-import cc.blynk.server.core.protocol.handlers.encoders.MessageEncoder;
+import cc.blynk.client.handlers.AppClientReplayningMessageDecoder;
+import cc.blynk.client.handlers.encoders.AppClientMessageEncoder;
 import cc.blynk.server.core.stats.GlobalStats;
 import cc.blynk.utils.properties.ServerProperties;
 import io.netty.channel.ChannelInitializer;
@@ -27,12 +28,12 @@ public class AppClient extends BaseClient {
     protected SslContext sslCtx;
 
     public AppClient(String host, int port) {
-        this(host, port, new Random(), false);
+        this(host, port, new Random(), new ServerProperties(Collections.emptyMap()));
     }
 
-    protected AppClient(String host, int port, Random msgIdGenerator, boolean disableAppSsl) {
-    	super (host, port, msgIdGenerator);
-    	log.info("Creating app Client. Host {}, sslPort : {}", host, port);
+    protected AppClient(String host, int port, Random msgIdGenerator) {
+        super(host, port, msgIdGenerator);
+        log.info("Creating app Client. Host {}, Port : {}", host, port);
     }
 
     protected AppClient(String host, int port, Random msgIdGenerator, ServerProperties properties) {
@@ -72,8 +73,8 @@ public class AppClient extends BaseClient {
                 if (sslCtx != null) {
                     pipeline.addLast(sslCtx.newHandler(ch.alloc(), host, port));
                 }
-                pipeline.addLast(new ClientReplayingMessageDecoder());
-                pipeline.addLast(new MessageEncoder(new GlobalStats()));
+                pipeline.addLast(new AppClientReplayningMessageDecoder());
+                pipeline.addLast(new AppClientMessageEncoder(new GlobalStats()));
             }
         };
     }

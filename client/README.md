@@ -7,28 +7,30 @@
 
 + In this client: register new user and/or login with the same credentials
 
-        register username@example.com UserPassword
-        login username@example.com UserPassword
+        Command Email Password AppName
+        register username@example.com UserPassword Blynk
+
+        Command Email Password S.O* Version* AppName* (*optional parameters)
+        login username@example.com UserPassword Android 2.27.34 Blynk
 
 
 + Save profile with simple dashboard
 
-        createDash {"id":1, "name":"My Dashboard", "boardType":"UNO"}
+        createDash {"id":1, "name":"My Dashboard"}
 
 
-+ Get the Auth Token for hardware (e.g Arduino)
++ Create device in previously created dashboard
 
-        getToken 1
+        Command DashId Device* (*json format)
+        createDevice 1 {"id":1, "name":"Device 001", "boardType":"Arduino UNO"}
 
-+ Activate dashboard
-
-        activate 1
 
 + You will get server response similar to this:
 
-    	00:05:18.100 TRACE  - Incomming : GetTokenMessage{id=30825, command=GET_TOKEN, length=32, body='33bcbe756b994a6768494d55d1543c74'}
+    	14:11:07.503 TRACE - Incoming client id=19220, command=CreateDevice, body='{"id":1,"name":"Device 001","boardType":"Generic Board","token":"yw6kFlwrL_wKKsIIowb8w9COPmR8pa7m","status":"OFFLINE","disconnectTime":0,"connectTime":0,"firstConnectTime":0,"dataReceivedAt":0,"isUserIcon":false}'
 
-Where `33bcbe756b994a6768494d55d1543c74` is your Auth Token.
+
+Where `yw6kFlwrL_wKKsIIowb8w9COPmR8pa7m` is your Auth Token.
 
 ## Hardware Client (emulates Hardware)
 

@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static cc.blynk.server.core.protocol.enums.Command.BRIDGE;
+import static cc.blynk.server.core.protocol.enums.Command.CREATE_DEVICE;
 import static cc.blynk.server.core.protocol.enums.Command.DELETE_WIDGET;
 import static cc.blynk.server.core.protocol.enums.Command.EMAIL;
 import static cc.blynk.server.core.protocol.enums.Command.EXPORT_GRAPH_DATA;
@@ -30,6 +31,8 @@ import static cc.blynk.server.core.protocol.enums.Command.HARDWARE;
 import static cc.blynk.server.core.protocol.enums.Command.HARDWARE_RESEND_FROM_BLUETOOTH;
 import static cc.blynk.server.core.protocol.enums.Command.HARDWARE_SYNC;
 import static cc.blynk.server.core.protocol.enums.Command.LOAD_PROFILE_GZIPPED;
+import static cc.blynk.server.core.protocol.enums.Command.LOGIN;
+import static cc.blynk.server.core.protocol.enums.Command.REGISTER;
 import static cc.blynk.server.core.protocol.enums.Command.RESET_PASSWORD;
 import static cc.blynk.server.core.protocol.enums.Command.SET_WIDGET_PROPERTY;
 import static cc.blynk.server.core.protocol.enums.Command.SHARE_LOGIN;
@@ -86,7 +89,9 @@ public abstract class BaseClient {
 
         String body = input.length == 1 ? "" : input[1];
 
-        if (command == HARDWARE
+        if (command == REGISTER
+                || command == LOGIN
+                || command == HARDWARE
                 || command == SHARE_LOGIN
                 || command == LOAD_PROFILE_GZIPPED
                 || command == HARDWARE_RESEND_FROM_BLUETOOTH
@@ -99,6 +104,8 @@ public abstract class BaseClient {
                 || command == RESET_PASSWORD
                 || command == DELETE_WIDGET) {
             body = body.replace(" ", "\0");
+        } else if (command == CREATE_DEVICE) {
+            body = body.replaceFirst(" ", "\0");
         }
         return produce(msgId, command, body);
     }
