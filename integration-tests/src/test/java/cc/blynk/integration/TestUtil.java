@@ -313,7 +313,6 @@ public final class TestUtil {
         return JsonParser.readAny(consumeText(response), List.class);
     }
 
-    @SuppressWarnings("unchecked")
     public static String consumeText(CloseableHttpResponse response) throws IOException {
         return EntityUtils.toString(response.getEntity());
     }
