@@ -4,8 +4,10 @@
 target
 *.log
 dependency-reduced-pom.xml
+pom.xml.releaseBackup
 # Eclipse IDE
 .project
 .classpath
 .checkstyle
 .settings/
+/release.properties

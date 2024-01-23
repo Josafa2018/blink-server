@@ -1,3 +1,7 @@
+# Esta não é a fonte original do servidor Blynk Legacy
+Esta é uma cópia de https://github.com/Peterkn2001/blynk-server.
+O repositório do servidor Blynk Legacy foi removido há algum tempo. Eu clonei este porque tenho o servidor rodando localmente em minha casa, então tenho uma dependência dele. O servidor Blynk Legacy foi descontinuado e não há mais suporte. As versões lançadas aqui serão apenas para correções de bugs e pequenas implementações sem nenhuma garantia ou suporte, use por sua conta e risco. Portanto enconrajo você fortemente o novo oficial [Blynk IOT](https://blynk.io/).
+
 # What is Blynk?
 
 ### Note that this Blynk Legacy server is now discontinued and unsupported!
@@ -30,7 +34,7 @@ If you need more information, please follow these links:
 * [Blynk library](https://github.com/blynkkk/blynk-library)
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
-![Dashboard settings](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/dash_settings.png)
+![Dashboard settings](https://github.com/Josafa2018/blink-server/blob/master/docs/overview/dash_settings.png)
 ![Widgets Box](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/widgets_box.png)
 ![Dashboard](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/dash.png)
 ![Dashboard2](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/dash2.png)
