@@ -1,81 +1,70 @@
-# Esta não é a fonte original do servidor Blynk Legacy
-Esta é uma cópia de https://github.com/Peterkn2001/blynk-server.
-O repositório do servidor Blynk Legacy foi removido há algum tempo. Eu clonei este porque tenho o servidor rodando localmente em minha casa, então tenho uma dependência dele. O servidor Blynk Legacy foi descontinuado e não há mais suporte. As versões lançadas aqui serão apenas para correções de bugs e pequenas implementações sem nenhuma garantia ou suporte, use por sua conta e risco. Portanto enconrajo você fortemente o novo oficial [Blynk IOT](https://blynk.io/).
+# Este não é o fonte original do servidor Blynk Legacy
+Este é uma cópia de https://github.com/Peterkn2001/blynk-server.
+O repositório do servidor Blynk Legacy foi removido há algum tempo. Eu clonei este porque tenho o servidor rodando localmente em minha casa, então tenho uma dependência dele. O servidor Blynk Legacy foi descontinuado e não há mais suporte. Portanto enconrajo você fortemente a usar o novo e oficial [Blynk IOT](https://blynk.io/).
+As versões lançadas aqui serão apenas atualização tradução dos manuais para pt-BR, correções de bugs e pequenas implementações sem nenhuma garantia ou suporte, use por sua conta e risco!!!
 
-# What is Blynk?
+### Observe que o servidor Blynk Legacy foi descontinuado e não há mais suporte!
+Ele não funciona com o aplicativo Blynk mais recente, e o aplicativo legado foi retirado das lojas de aplicativos app/play stores a partir de 30 de junho de 2022. Os aplicativos instalados anteriormente continuarão funcionando, embora versões posteriores do aplicativo legado não tenham a capacidade de criar novas contas, portanto, será necessária uma versão anterior do aplicativo ou a conta precisará ser criada manualmente, copiando e renomeando a conta Blynk.cc padrão.
 
-### Note that this Blynk Legacy server is now discontinued and unsupported!
-It does not work with the latest Blynk app, and the Legacy app will be withdrawn from the app/play stores from 30th June 2022.
-Previously installed apps will continue to work, although later versions of the legacy app do not have the ability to
-create new accounts, so the either an earlier version of the app will be needed, or accounst will need to be created manually
-by copying and renaming the default Blynk.cc account.
+Os servidores em nuvem legados foram desativados em 31 de dezembro de 2022. Isso não terá impacto nos servidores legados locais, mas como todo o suporte e atualizações para este servidor local legado e os aplicativos legados já cessaram, o uso de um servidor legado local deve ser considerado como medida provisória, porque o servidor eventualmente se tornará vulnerável quando o suporte para Java 11 for retirado e quando os aplicativos não funcionarem mais em versões mais recentes dos sistemas operacionais móveis.
 
-The Legacy cloud servers will be decommissioned on 31st December 2022. This will have no impact on local legacy servers, but 
-as all support and updates for this legacy local server and the legacy apps apps has already ceased, using a local legacy server
-should be seen as an interim measure, because the server will eventually become vulnerable when support for Java 11 is withdrawn
-and when the apps no longer run on newer mobile OS releases.
+A instalação do aplicativo iOS depois de retirado da app store exigirá o jailbraking do dispositivo móvel da Apple, e os usuários do Android precisarão obter e carregar lateralmente uma cópia do aplicativo legado fora da playstore.
 
-Installing the iOS app after it is withdrawn from the app store will require jailbraking the Apple mobile device, and Android users
-will need to source and side-load a copy of the legacy app outside of the playstore.
+# O que é o Blynk?
 
------------------------------------------------------------------------------------------------------------------------------------
-
-Blynk is a platform with iOS and Android apps to control Arduino, ESP8266, Raspberry Pi and the likes over the Internet.  
-You can easily build graphic interfaces for all your projects by simply dragging and dropping widgets.
-If you need more information, please follow these links:
-* [Blynk site](https://www.blynk.io)
-* [Blynk docs](http://docs.blynk.cc)
-* [Blynk community](https://community.blynk.cc)
-* [Blynk Examples generator](https://examples.blynk.cc)
+Blynk é uma plataforma com aplicativos iOS e Android para controlar Arduino, ESP8266, Raspberry Pi e similares pela Internet.
+Você pode construir facilmente interfaces gráficas para todos os seus projetos simplesmente arrastando e soltando widgets. 
+Se precisar de mais informações, acesse estes links:
+* [Site Blynk](https://www.blynk.io)
+* [Documentos Blynk](http://docs.blynk.cc)
+* [Comunidade Blynk](https://community.blynk.cc)
+* [Gerador de Exemplos Blynk](https://examples.blynk.cc)
 * [Facebook](http://www.fb.com/blynkapp)
 * [Twitter](http://twitter.com/blynk_app)
-* [App Store](https://itunes.apple.com/us/app/blynk-control-arduino-raspberry/id808760481?ls=1&mt=8)
-* [Google Play](https://play.google.com/store/apps/details?id=cc.blynk)
 * [Blynk library](https://github.com/blynkkk/blynk-library)
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
-![Dashboard settings](https://github.com/Josafa2018/blink-server/blob/master/docs/overview/dash_settings.png)
-![Widgets Box](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/widgets_box.png)
-![Dashboard](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/dash.png)
-![Dashboard2](https://github.com/Peterkn2001/blynk-server/blob/master/docs/overview/dash2.png)
+![Configurações do Dashboard](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash_settings.png)
+![Widgets Box](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/widgets_box.png)
+![Dashboard](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash.png)
+![Dashboard2](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash2.png)
 
-# Content 
+# Conteúdo
 
-- [Download](#blynk-server)
-- [Requirements](#requirements)
-- [Quick Local Server setup](#quick-local-server-setup)
-- [Enabling mail on Local server](#enabling-mail-on-local-server)
-- [Quick local server setup on Raspberry PI](#quick-local-server-setup-on-raspberry-pi)
-- [Docker container setup](#docker-container-setup)
-- [Enabling server auto restart on unix-like systems](#enabling-server-auto-restart-on-unix-like-systems)
-- [Enabling server auto restart on Windows](#enabling-server-auto-restart-on-windows)
-- [Update instruction for unix-like systems](#update-instruction-for-unix-like-systems)
-- [Update instruction for Windows](#update-instruction-for-windows)
-- [App and sketch changes for Local Server](#app-and-sketch-changes)
-- [Advanced local server setup](#advanced-local-server-setup)
-- [Administration UI](#administration-ui)
-- [HTTP/S RESTful API](#https-restful)
-- [Enabling sms on local server](#enabling-sms-on-local-server)
-- [Enabling raw data storage](#enabling-raw-data-storage)
-- [Automatic Let's Encrypt Certificates](#automatic-lets-encrypt-certificates-generation)
-- [Manual Let's Encrypt SSL/TLS Certificates](#manual-lets-encrypt-ssltls-certificates)
-- [Generate own SSL certificates](#generate-own-ssl-certificates)
-- [Install java for Ubuntu](#install-java-for-ubuntu)
-- [How Blynk Works?](#how-blynk-works)
-- [Blynk Protocol](#blynk-protocol)
+- [Download](#servidor-blynk)
+- [Requisitos](#requisitos)
+- [Configuração rápida do Servidor Local](#configuração-rápida-do-servidor-local)
+- [Habilitando e-mail no Servidor Local](#enabling-mail-on-local-server)
+- [Configuração rápida do Servidor Local no Raspberry PI](#quick-local-server-setup-on-raspberry-pi)
+- [Configuração do contêiner Docker](#docker-container-setup)
+- [Habilitando a reinicialização automática do servidor em sistemas Linux](#enabling-server-auto-restart-on-unix-like-systems)
+- [Habilitando a reinicialização automática do servidor no Windows](#enabling-server-auto-restart-on-windows)
+- [Instruções de atualização para sistemas Linux](#update-instruction-for-unix-like-systems)
+- [Instruções de atualização para Windows](#update-instruction-for-windows)
+- [Configuração do App e sketch para Servidor Local](#app-and-sketch-changes)
+- [Configuração avançada do Servidor Local](#advanced-local-server-setup)
+- [Administração UI](#administration-ui)
+- [API HTTP/S RESTful](#https-restful)
+- [Habilitando sms no Servidor Local](#enabling-sms-on-local-server)
+- [Habilitando o armazenamento de dados raw](#enabling-raw-data-storage)
+- [Certificados automáticos Let's Encrypt Certificates](#automatic-lets-encrypt-certificates-generation)
+- [Certificados Manuais Let's Encrypt SSL/TLS](#manual-lets-encrypt-ssltls-certificates)
+- [Gere seus próprios certificados SSL](#generate-own-ssl-certificates)
+- [Instalação java no Ubuntu](#install-java-for-ubuntu)
+- [Como funciona o Blynk?](#how-blynk-works)
+- [Protocolo Blynk](#blynk-protocol)
 
-# GETTING STARTED
+# INICIANDO
 
-## Blynk server
-Blynk Server is an Open-Source [Netty](https://github.com/netty/netty) based Java server, responsible for forwarding 
-messages between Blynk mobile application and various microcontroller boards and SBCs (i.e. Arduino, Raspberry Pi. etc).
+## Servidor Blynk
+Blynk é um servidor Java open-source baseado em [Netty](https://github.com/netty/netty), responsável por encaminhar mensagens entre o aplicativo móvel Blynk e várias placas microcontroladoras e SBCs (ou seja, Arduino, Raspberry Pi. etc).
 
-**Download latest server build [here](https://github.com/Peterkn2001/blynk-server/releases).**
+**Baixe a versão mais recente do servidor [aqui](https://github.com/Josafa2018/blynk-server-legacy/releases).**
 
-[![GitHub version](https://img.shields.io/github/release/Peterkn2001/blynk-server.svg)](https://github.com/Peterkn2001/blynk-server/releases/latest)
-[![GitHub download](https://img.shields.io/github/downloads/Peterkn2001/blynk-server/total.svg)](https://github.com/Peterkn2001/blynk-server/releases/latest)
+[![GitHub version](https://img.shields.io/github/release/Josafa2018/blynk-server.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
+[![GitHub download](https://img.shields.io/github/downloads/Josafa2018/blynk-server-legacy/total.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
 
-## Requirements
+## Requisitos
 - Java 8/11 required (OpenJDK, Oracle) 
 - Any OS that can run java 
 - At least 30 MB of RAM (could be less with tuning)
@@ -85,7 +74,7 @@ messages between Blynk mobile application and various microcontroller boards and
 
 For Windows download Java [here](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) and install. 
 
-## Quick local server setup
+## Configuração rápida do Servidor Local
 
 + Make sure you are using Java 11
 
