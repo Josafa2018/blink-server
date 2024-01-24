@@ -24,35 +24,35 @@ Se precisar de mais informações, acesse estes links:
 * [Blynk library](https://github.com/blynkkk/blynk-library)
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
-![Configurações do Dashboard](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash_settings.png)
-![Widgets Box](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/widgets_box.png)
-![Dashboard](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash.png)
-![Dashboard2](https://github.com/Josafa2018/blink-server-legacy/blob/master/docs/overview/dash2.png)
+![Configurações do Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash_settings.png)
+![Widgets Box](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/widgets_box.png)
+![Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash.png)
+![Dashboard2](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash2.png)
 
 # Conteúdo
 
 - [Download](#servidor-blynk)
 - [Requisitos](#requisitos)
-- [Configuração rápida do Servidor Local](#configuração-rápida-do-servidor-local)
-- [Habilitando e-mail no Servidor Local](#enabling-mail-on-local-server)
-- [Configuração rápida do Servidor Local no Raspberry PI](#quick-local-server-setup-on-raspberry-pi)
-- [Configuração do contêiner Docker](#docker-container-setup)
-- [Habilitando a reinicialização automática do servidor em sistemas Linux](#enabling-server-auto-restart-on-unix-like-systems)
-- [Habilitando a reinicialização automática do servidor no Windows](#enabling-server-auto-restart-on-windows)
-- [Instruções de atualização para sistemas Linux](#update-instruction-for-unix-like-systems)
-- [Instruções de atualização para Windows](#update-instruction-for-windows)
-- [Configuração do App e sketch para Servidor Local](#app-and-sketch-changes)
-- [Configuração avançada do Servidor Local](#advanced-local-server-setup)
-- [Administração UI](#administration-ui)
+- [Configuração Rápida do Servidor](#configuração-rápida-do-servidor)
+- [Habilitando E-mail no Servidor](#habilitando-email-no-servidor)
+- [Configuração Rápida do Servidor no Raspberry PI](#configuração-rápida-do-servidor-no-raspberry-pi)
+- [Configuração do Contêiner Docker](#configuração-do-contêiner-docker)
+- [Habilitando a Reinicialização Automática do Servidor em Sistemas Linux](#habilitando-a-reinicialização-automática-do-servidor-em-sistemas-linux)
+- [Habilitando a Reinicialização Automática do Servidor no Windows](#habilitando-a-reinicialização-automática-do-servidor-no-windows)
+- [Atualizando o Servidor em Sistemas Linux](#atualizando-o-servidor-em-sistemas-linux)
+- [Atualizando o Servidor no Windows](#atualizando-o-servidor-no-windows)
+- [Configurando App e sketch para Servidor](#configurando-app-e-sketch-para-servidor)
+- [Configuração Avançada do Servidor](#configuração-avançada-do-servidor)
+- [Interface de Administração](#ui-administração)
 - [API HTTP/S RESTful](#https-restful)
-- [Habilitando sms no Servidor Local](#enabling-sms-on-local-server)
-- [Habilitando o armazenamento de dados raw](#enabling-raw-data-storage)
-- [Certificados automáticos Let's Encrypt Certificates](#automatic-lets-encrypt-certificates-generation)
-- [Certificados Manuais Let's Encrypt SSL/TLS](#manual-lets-encrypt-ssltls-certificates)
-- [Gere seus próprios certificados SSL](#generate-own-ssl-certificates)
-- [Instalação java no Ubuntu](#install-java-for-ubuntu)
-- [Como funciona o Blynk?](#how-blynk-works)
-- [Protocolo Blynk](#blynk-protocol)
+- [Habilitando Envio de SMS no Servidor](#habilitando-envio-de-sms-no-servidor)
+- [Habilitando o armazenamento de dados raw](#habilitando-o-armazenamento-de-dados-raw)
+- [Gerar Certificados Automáticos Let's Encrypt](#gerar-certificados-automáticos-lets-encrypt)
+- [Gerar Certificados Manuais Let's Encrypt SSL/TLS](#gerar-certificados-manuais-lets-encrypt-ssltls)
+- [Gerar Certificado Auto-Asssinado SSL](#gerar-certificado-auto-asssinado-ssl)
+- [Instalação Java no Ubuntu](#instalação-java-no-ubuntu)
+- [Como funciona o Blynk?](#como-funciona-o-blynk)
+- [Protocolo Blynk](#protocolo-blynk)
 
 # INICIANDO
 
@@ -74,7 +74,7 @@ Blynk é um servidor Java open-source baseado em [Netty](https://github.com/nett
 
 For Windows download Java [here](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) and install. 
 
-## Configuração rápida do Servidor Local
+## Configuração Rápida do Servidor
 
 + Make sure you are using Java 11
 
@@ -94,7 +94,7 @@ That's it!
         Blynk Server successfully started.
         All server output is stored in current folder in 'logs/blynk.log' file.
         
-### Enabling mail on Local server
+### Habilitando Email no Servidor
 
 ### NOTE - From May 30th 2022 Google has stopped allowing less secure applications on personal Gmail accounts, so email from the Blynk local server will not be possible in most cases.
 
@@ -115,7 +115,7 @@ WARNING : only gmail accounts are allowed.
 NOTE : you'll need to setup Gmail to allow less secure applications.
 Go [here](https://www.google.com/settings/security/lesssecureapps) and then click "Allow less secure apps".
 
-## Quick local server setup on Raspberry PI
+## Configuração Rápida do Servidor no Raspberry PI
 
 + Login to Raspberry Pi via ssh;
 + Install java 8: 
@@ -142,7 +142,7 @@ That's it!
         Blynk Server successfully started.
         All server output is stored in current folder in 'logs/blynk.log' file.
 
-## Docker container setup
+## Configuração do Contêiner Docker
 
 ### Quick Launch
 
@@ -165,7 +165,7 @@ That's it!
 
 
 
-## Enabling server auto restart on unix-like systems
+## Habilitando a Reinicialização Automática do Servidor em Sistemas Linux
         
 + To enable server auto restart find /etc/rc.local file and add:
 
@@ -181,7 +181,7 @@ add the following line
         
 save and exit.
 
-## Enabling server auto restart on Windows
+## Habilitando a Reinicialização Automática do Servidor no Windows
 
 + Create bat file:
 
@@ -195,7 +195,7 @@ save and exit.
 
 You can also use [this](https://github.com/Peterkn2001/blynk-server/tree/master/scripts/win) script to run server.
 
-## Update instruction for unix-like systems
+## Atualizando o Servidor em Sistemas Linux
 
 **IMPORTANT**
 Server should be always updated before you update Blynk App. To update your server to a newer version you would need to kill old process and start a new one.
@@ -221,7 +221,7 @@ After this steps you can update Blynk app. Server version downgrade is not suppo
 **WARNING!**
 Please **do not** revert your server to lower versions. You may loose all of your data.
 
-## Update instruction for Windows
+## Atualizando o Servidor no Windows
 
 + Open Task Manager;
 
@@ -231,7 +231,7 @@ Please **do not** revert your server to lower versions. You may loose all of you
 
 + Start new server [as usual](#quick-local-server-setup)
                 
-## App and sketch changes
+## Configurando App e sketch para Servidor
 
 + Specify custom server path in your application
 
@@ -297,7 +297,7 @@ Blynk is being constantly developed. Mobile apps and server are updated often. T
 **IMPORTANT** 
 Blynk local server is different from  Blynk Cloud server. They are not related at all. You have to create new account when using Blynk local server.
 
-## Advanced local server setup
+## Configuração Avançada do Servidor
 For more flexibility you can extend server with more options by creating ```server.properties``` file in same folder as ```server.jar```. 
 Example could be found [here](https://github.com/Peterkn2001/blynk-server/blob/master/server/core/src/main/resources/server.properties).
 You could also specify any path to ```server.properties``` file via command line argument ```-serverConfig```. You can 
@@ -412,7 +412,7 @@ Available server options:
         
         contact.email=pupkin@gmail.com
         
-## Administration UI
+## UI Administração
 
 Blynk server provides administration panel where you can monitor your server. It is accessible at this URL:
 
@@ -439,7 +439,7 @@ administration page available from any other computer. Please restrict access to
 Blynk HTTP/S RESTful API allows to easily read and write values to/from Pins in Blynk apps and Hardware. 
 Http API description could be found [here](http://docs.blynkapi.apiary.io).
 
-### Enabling sms on local server
+### Habilitando Envio de SMS no Servidor
 To enable SMS notifications on Local Server you need to provide credentials for SMS gateway (currently Blynk server
 supports only 1 provider - [Nexmo](https://www.nexmo.com/). You need to create file ```sms.properties``` 
 within same folder where server.jar is.
@@ -451,7 +451,7 @@ And fill in the above properties with the credentials you'll get from Nexmo. (Ac
 You can also send SMS over email if your cell provider supports that. See [discussion](http://community.blynk.cc/t/sms-notification-for-important-alert/2542) for more details.
  
 
-## Enabling raw data storage
+## Habilitando o Armazenamento de Dados RAW
 By default raw data storage is disabled (as it consumes disk space a lot). 
 When you enable it, every ```Blynk.virtualWrite``` command will be saved to DB.
 You will need to install PostgreSQL Database (**minimum required version is 9.5**) to enable this functionality:
@@ -557,7 +557,7 @@ To display the date/time in excel you may use formula:
         
 ```0``` - device id
         
-### Automatic Let's Encrypt certificates generation
+### Gerar Certificados Automáticos Let's Encrypt
 
 Latest Blynk server has super cool feature - automatic Let's Encrypt certificates generation. 
 However, it has few requirements: 
@@ -581,7 +581,7 @@ That's it! Run server as regular and certificates will be generated automaticall
 
 ![](https://gifyu.com/images/certs.gif)
 
-### Manual Let's Encrypt SSL/TLS Certificates
+### Gerar Certificados Manuais Let's Encrypt SSL/TLS
 
 + First install [certbot](https://github.com/certbot/certbot) on your server (machine where you going to run Blynk Server)
 
@@ -602,7 +602,7 @@ For example
         server.ssl.key=/etc/letsencrypt/live/YOUR_HOST/privkey.pem
         server.ssl.key.pass=
         
-### Generate own SSL certificates
+### Gerar Certificado Auto-Asssinado SSL
 
 + Generate self-signed certificate and key
 
@@ -616,7 +616,7 @@ If you connect hardware with [USB script](https://github.com/blynkkk/blynk-libra
         
 As an output you'll retrieve server.crt and server.pem files that you need to provide for server.ssl properties.
 
-### Install java for Ubuntu
+### Instalação Java no Ubuntu
 
         sudo add-apt-repository ppa:openjdk-r/ppa \
         && sudo apt-get update -q \
@@ -645,13 +645,13 @@ Blynk has a bunch of integration tests that require DB, so you have to skip test
 
         mvn clean install -Dmaven.test.skip=true
         
-### How Blynk Works?
+### Como Funciona o Blynk?
 When hardware connects to Blynk cloud it opens either keep-alive ssl/tls connection on port 443 (9443 for local servers) or keep-alive plain
 tcp/ip connection on port 8080. Blynk app opens mutual ssl/tls connection to Blynk Cloud on port 443 (9443 for local servers).
 Blynk Cloud is responsible for forwarding messages between hardware and app. In both (app and hardware) connections Blynk uses 
 own binary protocol described below.
 
-### Blynk protocol
+### Protocolo Blynk
 
 
 #### Hardware side protocol
