@@ -21,7 +21,7 @@ Se precisar de mais informações, acesse estes links:
 * [Gerador de Exemplos Blynk](https://examples.blynk.cc)
 * [Facebook](http://www.fb.com/blynkapp)
 * [Twitter](http://twitter.com/blynk_app)
-* [Blynk library](https://github.com/blynkkk/blynk-library)
+* [Blynk library](https://github.com/Josafa2018/blynk-library)
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
 ![Configurações do Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash_settings.png)
@@ -185,53 +185,52 @@ salvafr e sair.
 
 ## Habilitando a Reinicialização Automática do Servidor no Windows
 
-+ Create bat file:
++ Crie o arquivo bat:
 
         start-blynk.bat
 
-+ Put in it one line: 
++ Adicione esse linha nele: 
 
         java -jar server-0.41.16.jar -dataFolder /home/pi/Blynk
         
-+ Put bat file to windows startup folder
++ Coloque o arquivo bat na pasta de inicialização do Windows
 
-You can also use [this](https://github.com/Peterkn2001/blynk-server/tree/master/scripts/win) script to run server.
+Você também pode usar [este](https://github.com/Peterkn2001/blynk-server/tree/master/scripts/win) script para executar o Servidor.
 
 ## Atualizando o Servidor em Sistemas Linux
 
-**IMPORTANT**
-Server should be always updated before you update Blynk App. To update your server to a newer version you would need to kill old process and start a new one.
+**IMPORTANTE** O servidor deve estar sempre atualizado antes de atualizar o aplicativo Blynk. Para atualizar seu servidor para uma versão mais recente, você precisará encerrar o processo antigo e iniciar um novo.
 
-+ Find process id of Blynk server
++ Encontre o ID do processo do servidor Blynk
 
         ps -aux | grep java
         
-+ You should see something like that
++ A saída deve mostrar algo assim
  
         username   10539  1.0 12.1 3325808 428948 pts/76 Sl   Jan22   9:11 java -jar server-0.41.16.jar   
         
-+ Kill the old process
++ Encerre o processo antigo.
 
         kill 10539
-        
-10539 - blynk server process id from command output above.
- 
-+ Start new server [as usual](#quick-local-server-setup)
 
-After this steps you can update Blynk app. Server version downgrade is not supported. 
+10539 - id do processo do servidor blynk na saída do comando acima..
+ 
++ Inicie o Servidor [normalmente](#quick-local-server-setup)
+
+Após essas etapas, você pode atualizar o aplicativo Blynk. O downgrade da versão do servidor não é compatível. 
 
 **WARNING!**
 Please **do not** revert your server to lower versions. You may loose all of your data.
 
 ## Atualizando o Servidor no Windows
 
-+ Open Task Manager;
++ Abra o Gerenciador de Tarefas;
 
-+ Find Java process;
++ Encontre o processo Java;
 
-+ Stop process;
++ Pare o processo;
 
-+ Start new server [as usual](#quick-local-server-setup)
++ Inicie o novo servidor [normalmente](#quick-local-server-setup)
                 
 ## Configurando App e Sketch para Servidor
 
