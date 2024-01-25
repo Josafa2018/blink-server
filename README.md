@@ -43,7 +43,7 @@ Se precisar de mais informações, acesse estes links:
 - [Atualizando o Servidor no Windows](#atualizando-o-servidor-no-windows)
 - [Configurando App e sketch para Servidor](#configurando-app-e-sketch-para-servidor)
 - [Configuração Avançada do Servidor](#configuração-avançada-do-servidor)
-- [Interface de Administração](#ui-administração)
+- [Interface de Administração do Usuário](#interface-de-administração-do-usuário)
 - [API HTTP/S RESTful](#https-restful)
 - [Habilitando Envio de SMS no Servidor](#habilitando-envio-de-sms-no-servidor)
 - [Habilitando o armazenamento de dados raw](#habilitando-o-armazenamento-de-dados-raw)
@@ -181,21 +181,21 @@ adicione a seguinte linha:
 
         @reboot java -jar /home/pi/server-0.41.18.jar -dataFolder /home/pi/Blynk &
         
-salvafr e sair.
+salvar e sair.
 
 ## Habilitando a Reinicialização Automática do Servidor no Windows
 
-+ Crie o arquivo bat:
++ Crie o arquivo .bat:
 
         start-blynk.bat
 
-+ Adicione esse linha nele: 
++ Adicione esse linha: 
 
-        java -jar server-0.41.16.jar -dataFolder /home/pi/Blynk
+        java -jar server-0.41.18.jar -dataFolder /home/pi/Blynk
         
-+ Coloque o arquivo bat na pasta de inicialização do Windows
++ Coloque o arquivo .bat na pasta de inicialização do Windows
 
-Você também pode usar [este](https://github.com/Peterkn2001/blynk-server/tree/master/scripts/win) script para executar o Servidor.
+Você também pode usar este [aqui](https://github.com/Josafá2018/blynk-server-legacy/tree/master/scripts/win) script para executar o Servidor.
 
 ## Atualizando o Servidor em Sistemas Linux
 
@@ -215,12 +215,12 @@ Você também pode usar [este](https://github.com/Peterkn2001/blynk-server/tree/
 
 10539 - id do processo do servidor blynk na saída do comando acima..
  
-+ Inicie o Servidor [normalmente](#quick-local-server-setup)
++ Inicie o Servidor [normalmente](#configuração-rápida-do-servidor)
 
 Após essas etapas, você pode atualizar o aplicativo Blynk. O downgrade da versão do servidor não é compatível. 
 
-**WARNING!**
-Please **do not** revert your server to lower versions. You may loose all of your data.
+**AVISO!**
+Por favor **não** everta seu servidor para versões anteriores. Você pode perder todos os seus dados.
 
 ## Atualizando o Servidor no Windows
 
@@ -230,241 +230,235 @@ Please **do not** revert your server to lower versions. You may loose all of you
 
 + Pare o processo;
 
-+ Inicie o novo servidor [normalmente](#quick-local-server-setup)
++ Inicie o novo servidor [normalmente](#configuração-rápida-do-servidor)
                 
 ## Configurando App e Sketch para Servidor
 
-+ Specify custom server path in your application
++ Especifique o caminho do servidor personalizado em seu aplicativo
 
-![Custom server icon](https://github.com/Peterkn2001/blynk-server/blob/master/docs/login.png)
-![Server properties menu](https://github.com/Peterkn2001/blynk-server/blob/master/docs/custom.png)
+![Custom server icon](https://github.com/Josafa2018/blynk-server-library/blob/master/docs/login.png)
+![Server properties menu](https://github.com/Josafa2018/blynk-server-library/blob/master/docs/custom.png)
 
-+ Change your ethernet sketch from
++ Altere seu sketch Ethernet de
 
     ```
     Blynk.begin(auth);
     ```
     
-    to
+    para
     
     ```
-    Blynk.begin(auth, "your_host", 8080);
+    Blynk.begin(auth, "seu_host", 8080);
     ```
     
-    or to
+    ou para
     
     ```
     Blynk.begin(auth, IPAddress(xxx,xxx,xxx,xxx), 8080);
     ```
         
-+ Change your WIFI sketch from
++ Altere seu sketch WIFI de
         
     ```
-    Blynk.begin(auth, SSID, pass));
+    Blynk.begin(auth, SSID, senha));
     ```
    
-    to
+    para
     
     ```
-    Blynk.begin(auth, SSID, pass, "your_host", 8080);
+    Blynk.begin(auth, SSID, senha, "seu_host", 8080);
     ```
     
-    or to
+    ou para
     
     ```
-    Blynk.begin(auth, SSID, pass, IPAddress(XXX,XXX,XXX,XXX), 8080);
+    Blynk.begin(auth, SSID, senha, IPAddress(XXX,XXX,XXX,XXX), 8080);
     ```
         
-+ Change your rasp PI javascript from
++ Alter seu javascript rasp PI de
 
     ```
     var blynk = new Blynk.Blynk(AUTH, options = {connector : new Blynk.TcpClient()});
     ```
     
-    to
+    para
     
     ```
     var blynk = new Blynk.Blynk(AUTH, options= {addr:"xxx.xxx.xxx.xxx", port:8080});
     ```
         
-+ or in case of USB when running blynk-ser.sh provide '-s' option with address of your local server
++ ou no caso do USB ao executar blynk-ser.sh forneça a opção '-s' com o endereço do seu servidor local.
 
-        ./blynk-ser.sh -s you_host_or_IP
+        ./blynk-ser.sh -s seu_host_ou_IP
         
         
-**IMPORTANT** 
-Blynk is being constantly developed. Mobile apps and server are updated often. To avoid problems during updates either turn off auto-update for Blynk app, or update both local server and blynk app at same time to avoid possible migration issues.
+**IMPORTANTE**
+O Blynk está em constante desenvolvimento. Os aplicativos móveis e o servidor são atualizados com frequência. Para evitar problemas durante as atualizações, desative a atualização automática do aplicativo Blynk ou atualize o servidor local e o aplicativo blynk ao mesmo tempo para evitar possíveis problemas de migração.
 
-**IMPORTANT** 
-Blynk local server is different from  Blynk Cloud server. They are not related at all. You have to create new account when using Blynk local server.
+**IMPORTANTE**
+O servidor local Blynk é diferente do servidor Blynk Cloud. Eles não estão relacionados de forma alguma. Você deve criar uma nova conta ao usar o servidor local Blynk.
 
 ## Configuração Avançada do Servidor
-For more flexibility you can extend server with more options by creating ```server.properties``` file in same folder as ```server.jar```. 
-Example could be found [here](https://github.com/Peterkn2001/blynk-server/blob/master/server/core/src/main/resources/server.properties).
-You could also specify any path to ```server.properties``` file via command line argument ```-serverConfig```. You can 
-do the same with ```mail.properties``` via ```-mailConfig``` and ```sms.properties``` via ```-smsConfig```.
+Para maior flexibilidade, você pode configurar o servidor com mais opções criando o arquivo ```server.properties``` na mesma pasta que se encontra o ```server.jar```.
+Um exemplo pode ser encontrado [aqui](https://github.com/Josafa2018/blynk-server-legacy/blob/master/server/core/src/main/resources/server.properties).
+Você também pode especificar qualquer caminho para o arquivo ```server.properties``` por meio do argumento da linha de comando ```-serverConfig```. Você pode fazer o mesmo com ```mail.properties``` através de ```-mailConfig``` e para ```sms.properties``` através de ```-smsConfig```.
  
-For example:
+Por exemplo:
 
-    java -jar server-0.41.16-java8.jar -dataFolder /home/pi/Blynk -serverConfig /home/pi/someFolder/server.properties
+    java -jar server-0.41.18.jar -dataFolder /home/pi/Blynk -serverConfig /home/pi/someFolder/server.properties
 
-Available server options:
+Opções disponíveis para server properties:
 
-+ Blynk app, https, web sockets, admin port
++ Porta para app Blynk, https, web sockets, site admin
         
         https.port=9443
 
 
-+ Http, hardware and web sockets port
++ Porta para http, hardware e web sockets
 
         http.port=8080
         
         
-+ For simplicity Blynk already provides server jar with built in SSL certificates, so you have working server out of the box via SSL/TLS sockets. But as certificate and it's private key are in public this is totally not secure. So in order to fix that you need to provide your own certificates. And change below properties with path to your cert. and private key and it's password. See how to generate self-signed certificates [here](#generate-ssl-certificates)
++ Para simplificar, o Blynk já fornece o jar do servidor com certificados SSL integrados, para que você tenha um servidor funcionando imediatamente por meio de soquetes SSL/TLS. Mas como o certificado e sua chave privada são públicos, isso não é totalmente seguro. Portanto, para corrigir isso, você precisa fornecer seus próprios certificados. Altere as propriedades abaixo com o caminho para o seu certificado, chave privada e sua senha. Veja como gerar certificados autoassinados [aqui](#gerar-certificado-auto-asssinado-ssl)
 
-        #points to cert and key that placed in same folder as running jar.
+        #aponta para o certificado e a chave colocados na mesma pasta do jar em execução. .
         
         server.ssl.cert=./server_embedded.crt
         server.ssl.key=./server_embedded.pem
         server.ssl.key.pass=pupkin123
 
-**Note**: if you use Let's Encrypt certificates you'll have to add ```#define BLYNK_SSL_USE_LETSENCRYPT``` before ```#include <BlynkSimpleEsp8266_SSL.h>``` in the Arduino Sketch for your hardware.
+**Nota**: se você usar certificados Let's Encrypt você terá que adicionar ```#define BLYNK_SSL_USE_LETSENCRYPT``` antes de ```#include <BlynkSimpleEsp8266_SSL.h>``` in the Sketch Arduino para seu hardware.
         
-+ User profiles folder. Folder in which all users profiles will be stored. By default System.getProperty("java.io.tmpdir")/blynk used. Will be created if not exists
++ Pasta de perfis de usuário. Pasta na qual serão armazenados todos os perfis dos usuários. Por padrão, System.getProperty("java.io.tmpdir")/blynk é usado. Será criado se não existir
 
         data.folder=/tmp/blynk
         
 
-+ Folder for all application logs. Will be created if it doesn't exist. "." is dir from which you are running script.
++ Pasta para todos os logs do aplicativo. Será criado se não existir. "." é o diretório a partir do qual você está executando o script.
 
         logs.folder=./logs
         
 
-+ Log debug level. Possible values: trace|debug|info|error. Defines how precise logging will be. From left to right -> maximum logging to minimum
++ Nível de depuração de log. Valores possíveis: trace|debug|info|error. Define quão preciso será o registro. Da esquerda para a direita -> registro máximo ao mínimo
 
         log.level=trace
         
 
-+ Maximum allowed number of user dashboards.
++ Número máximo de dashboard permitido por usuário..
 
         user.dashboard.max.limit=100
         
 
-+ 100 Req/sec rate limit per user. You also may want to extend this limit on [hardware side](https://github.com/blynkkk/blynk-library/blob/f4e132652906d63d683abeed89f5d6ebe369e37a/Blynk/BlynkConfig.h#L42).
++ Limita taxa de 100 Req/sec por usuário. Você também pode aumentar esse limite do [lado do hardware](https://github.com/Josafa2018/blynk-library/blob/f4e132652906d63d683abeed89f5d6ebe369e37a/Blynk/BlynkConfig.h#L42).
 
         user.message.quota.limit=100
         
 
-+ this setting defines how often you can send mail/tweet/push or any other notification. Specified in seconds
++ Esta configuração define com que frequência você pode enviar e-mail/tweet/push ou qualquer outra notificação. Especificado em segundos
         
         notifications.frequency.user.quota.limit=60
         
 
-+ Maximum allowed user profile size. In Kb's.
++ Tamanho máximo permitido do perfil do usuário. Em Kb's.
 
         user.profile.max.size=128
         
         
-+ Number of strings to store in terminal widget (terminal history data)
++ Número de strings para armazenar no widget terminal (histórico do terminal)
 
         terminal.strings.pool.size=25
         
 
-+ Maximum allowed number of notification queue. Queue responsible for processing email, pushes, twits sending. Because of performance issue - those queue is processed in separate thread, this is required due to blocking nature of all above operations. Usually limit shouldn't be reached
++ Número máximo permitido da fila de notificação. A Fila é responsável pelo processamento de email, pushes, envio de twits. Devido ao problema de desempenho - essas filas são processadas em threads separados, isso é necessário devido à natureza de bloqueio de todas as operações acima. Normalmente o limite não deve ser atingido.
         
         notifications.queue.limit=5000
         
         
-+ Number of threads for performing blocking operations - push, twits, emails, db queries. Recommended to hold this value low unless you have to perform a lot of blocking operations.
++ Número de threads para realizar operações de bloqueio - push, twits, emails, consultas de banco de dados. É recomendado manter esse valor baixo, a menos que você precise realizar muitas operações de bloqueio.
 
         blocking.processor.thread.pool.limit=6
         
 
-+ Period for flushing all user DB to disk. In millis
++ Período para liberar todo o banco de dados do usuário no disco. Em milissegundos
 
         profile.save.worker.period=60000
 
-+ Specifies maximum period of time when hardware socket could be idle. After which socket will be closed due to non activity. In seconds. Leave it empty for infinity timeout
++ Especifica o período máximo de tempo em que o soquete de hardware pode ficar ocioso. Depois disso, o soquete será fechado devido à inatividade. Em segundos. Deixe-o vazio para o tempo limite infinito
 
         hard.socket.idle.timeout=15
         
-+ Mostly required for local servers setup in case user want to log raw data in CSV format. See [raw data] (#raw-data-storage) section for more info.
++ Principalmente necessário para configuração de servidores locais, caso o usuário queira registrar dados brutos em formato CSV. Consulte a seção [raw data] (#raw-data-storage) para obter mais informações.
         
         enable.raw.data.store=true
         
-+ Url for opening admin page. Must start from "/". For "/admin" url path will look like that "https://127.0.0.1:9443/admin". 
++ URL para abrir a página de administração. Deve começar com "/". Para "/admin" o caminho do URL será semelhante a "https://127.0.0.1:9443/admin". 
 
         admin.rootPath=/admin
         
-+ Comma separated list of administrator IPs. Allow access to admin UI only for those IPs. You may set it for 0.0.0.0/0 to allow access for all. You may use CIDR notation. For instance, 192.168.0.53/24.
++ Lista separada por vírgulas de IPs do administrador. Permitir acesso à UI do administrador apenas para esses IPs. Você pode configurá-lo para 0.0.0.0/0 para permitir acesso a todos. Você pode usar a notação CIDR. Por exemplo, 192.168.0.53/24.
         
         allowed.administrator.ips=0.0.0.0/0
         
-+ Default admin name and password. Will be created on initial server start
++ Nome do administrador e senha padrão. Será criado na inicialização do servidor
         
         admin.email=admin@blynk.cc
         admin.pass=admin
 
-+ Host for reset password redirect and certificate generation. By default current server IP is taken from "eth" network interface. Could be replaced with more friendly hostname. It is recommended to override this property with your server IP to avoid possible problems of host resolving.
++ Host para redirecionamento de redefinição de senha e geração de certificado. Por padrão, o IP do servidor atual é obtido da interface de rede "eth". Poderia ser substituído por um nome de host mais amigável. Recomenda-se substituir esta propriedade pelo IP do seu servidor para evitar possíveis problemas de resolução do host.
         
         server.host=blynk-cloud.com
         
-+ Email used for certificate registration, could be omitted in case you already specified it in mail.properties.
++ O e-mail utilizado para registro do certificado pode ser omitido caso você já o tenha especificado em mail.properties.
         
         contact.email=pupkin@gmail.com
         
-## UI Administração
+## Interface de Administração do Usuário
 
-Blynk server provides administration panel where you can monitor your server. It is accessible at this URL:
+O servidor Blynk fornece painel de administração onde você pode monitorar seu servidor. Está acessível nesta URL:
 
         https://your_ip:9443/admin
         
-![Administration UI](https://github.com/Peterkn2001/blynk-server/blob/master/docs/admin_panel.png)
+![Administration UI](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/admin_panel.png)
               
-**WARNING**
-Please change default admin password and name right after login to admin page. **THIS IS SECURITY MEASURE**.
+**AVISO**
+Por favor, altere a senha e o nome do administrador padrão logo após fazer login na página de administração. **ESTA É MEDIDA DE SEGURANÇA**.
         
-**WARNING**
-Default ```allowed.administrator.ips``` setting allows access for everyone. In other words, 
-administration page available from any other computer. Please restrict access to it via property ```allowed.administrator.ips```.
+**AVISO**
+A configuração padrão ```allowed.administrator.ips``` permite acesso para todos. Em outras palavras, página de administração está disponível para qualquer outro computador. Por favor, restrinja o acesso a ela através da propriedade ```allowed.administrator.ips```.
 
-### Turn off chrome https warning on localhost
+### Desative o aviso de https do chrome no localhost
 
-- Paste in chrome 
+- Cole no chrome 
 
         chrome://flags/#allow-insecure-localhost
 
-- You should see highlighted text saying: "Allow invalid certificates for resources loaded from localhost". Click enable.
+- Você deverá ver o texto destacado dizendo: "Permitir certificados inválidos para recursos carregados em localhost". Clique em ativar.
         
 ## HTTP/S RESTful
-Blynk HTTP/S RESTful API allows to easily read and write values to/from Pins in Blynk apps and Hardware. 
-Http API description could be found [here](http://docs.blynkapi.apiary.io).
+A API RESTful HTTP/S do Blynk permite ler e gravar facilmente valores de/para Pins em aplicativos e hardware Blynk. A descrição da API HTTP pode ser encontrada [aqui](https://blinkapiv2.docs.apiary.io).
 
 ### Habilitando Envio de SMS no Servidor
-To enable SMS notifications on Local Server you need to provide credentials for SMS gateway (currently Blynk server
-supports only 1 provider - [Nexmo](https://www.nexmo.com/). You need to create file ```sms.properties``` 
-within same folder where server.jar is.
+Para habilitar notificações por SMS no servidor local, você precisa fornecer credenciais para o gateway SMS (atualmente o servidor Blynk suporta apenas 1 provedor - [Nexmo](https://www.nexmo.com/). Você precisa criar o arquivo ```sms.properties```
+na mesma pasta onde server.jar está.
 
         nexmo.api.key=
         nexmo.api.secret=
-        
-And fill in the above properties with the credentials you'll get from Nexmo. (Account -> Settings -> API settings).
-You can also send SMS over email if your cell provider supports that. See [discussion](http://community.blynk.cc/t/sms-notification-for-important-alert/2542) for more details.
+
+E preencha as propriedades acima com as credenciais que você obterá da Nexmo. (Conta -> Configurações -> Configurações de API). Você também pode enviar SMS por e-mail se sua operadora de celular oferecer suporte para isso. Veja [a discussão](http://community.blynk.cc/t/sms-notification-for-important-alert/2542) para mais detalhes.
  
 
 ## Habilitando o Armazenamento de Dados RAW
-By default raw data storage is disabled (as it consumes disk space a lot). 
-When you enable it, every ```Blynk.virtualWrite``` command will be saved to DB.
-You will need to install PostgreSQL Database (**minimum required version is 9.5**) to enable this functionality:
+Por padrão, o armazenamento de dados brutos está desabilitado (pois consome muito espaço em disco). Ao habilitá-lo, todos os comandos ```Blynk.virtualWrite``` serão salvos no banco de dados.
+Você precisará instalar o banco de dados PostgreSQL (**a versão mínima necessária é 9.5**) para habilitar esta funcionalidade:
 
-#### 1. Enabling raw data on server
+#### 1. Habilitando dados brutos no servidor
 
-Enable raw data in ```server.properties``` : 
+Habilite dados brutos em ```server.properties``` : 
 
         enable.db=true
         enable.raw.db.data.store=true
 
-#### 2. Install PostgreSQL. Option A
+#### 2. Instalar o PostgreSQL. Opção A
 
         sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
         wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
@@ -472,41 +466,41 @@ Enable raw data in ```server.properties``` :
         sudo apt-get update
         sudo apt-get install postgresql postgresql-contrib
         
-#### 2. Install PostgreSQL.  Option B 
+#### 2. Instalar o PostgreSQL.  Opção B 
 
         sudo apt-get update
         apt-get --no-install-recommends install postgresql-9.6 postgresql-contrib-9.6
 
-#### 3. Download Blynk DB script
+#### 3. Baixe o script Blynk DB
 
-        wget https://raw.githubusercontent.com/Peterkn2001Peterkn2001/blynk-server/master/server/core/src/main/resources/create_schema.sql
-        wget https://raw.githubusercontent.com/Peterkn2001/blynk-server/master/server/core/src/main/resources/reporting_schema.sql
+        wget https://raw.githubusercontent.com/Josafa2018/blynk-server-legacy/master/server/core/src/main/resources/create_schema.sql
+        wget https://raw.githubusercontent.com/Josafa2018/blynk-server-legacy/master/server/core/src/main/resources/reporting_schema.sql
 
-#### 4. Move create_schema.sql and reporting_schema.sql to temp folder (to avoid permission problems)
+#### 4. Mova create_schema.sql e reporting_schema.sql para a pasta temporária (para evitar problemas de permissão)
 
         mv create_schema.sql /tmp
         mv reporting_schema.sql /tmp
         
-Result:  
+Resultado:  
 
         /tmp/create_schema.sql
         /tmp/reporting_schema.sql
-        
-Copy it to clipboard from your console.
 
-#### 5. Connect to PostgreSQL
+Copie-o para a área de transferência do seu console.
+
+#### 5. Conecte-se ao PostgreSQL
 
         sudo su - postgres
         psql
 
-#### 6. Create Blynk DB and Reporting DB, test user and tables
+#### 6. Crie o banco de dados Blynk e o banco de dados de relatórios, usuário teste e tabelas
 
         \i /tmp/create_schema.sql
         \i /tmp/reporting_schema.sql
         
-```/tmp/create_schema.sql``` - is path from step 4.
+```/tmp/create_schema.sql``` - é o caminho da etapa 4.
         
-You should see next output:
+Logo após, você vera uma tela como esta:
 
         postgres=# \i /tmp/create_schema.sql
         CREATE DATABASE
@@ -526,96 +520,97 @@ You should see next output:
         GRANT
         GRANT
 
-#### Quit
+#### Sair
 
         \q
-               
-Now start your server and you should see next text in ```postgres.log``` file : 
+
+Agora inicie o servidor e você deverá ver o próximo texto no arquivo ```postgres.log``` : 
 
         2017-03-02 16:17:18.367 - DB url : jdbc:postgresql://localhost:5432/blynk?tcpKeepAlive=true&socketTimeout=150
         2017-03-02 16:17:18.367 - DB user : test
         2017-03-02 16:17:18.367 - Connecting to DB...
         2017-03-02 16:17:18.455 - Connected to database successfully.
         
-WARNING:
-Raw data may consume your disk space very quickly!
+**AVISO**:
+Os dados brutos podem consumir seu espaço em disco muito rapidamente!
 
-### CSV data format
+### Formato de dados CSV
 
-Data format is:
+Oformato de dados é:
 
         value,timestamp,deviceId
         
-For example:
+Por exemplo:
 
         10,1438022081332,0
         
-Where ```10``` - value of pin.
-```1438022081332``` - the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC.
-To display the date/time in excel you may use formula:
+Onde ```10``` - valor do pino.
+```1438022081332``` - a diferfença, medida em millisegundos, entre a hora atual e a meia-noite de 1º de janeiro de 1970 UTC.
+Para exibir a data/hora no Excel você pode usar a fórmula::
 
         =((COLUMN/(60*60*24)/1000+25569))
         
-```0``` - device id
+```0``` - id do dispositivo
         
 ### Gerar Certificados Automáticos Let's Encrypt
 
-Latest Blynk server has super cool feature - automatic Let's Encrypt certificates generation. 
-However, it has few requirements: 
+O servidor Blynk mais recente tem um recurso super legal - geração automática de certificados Let's Encrypt. No entanto, tem alguns requisitos:: 
  
-+ Add ```server.host``` property in ```server.properties``` file. 
-For example : 
++ Adicione a propriedade ```server.host``` no arquivo ```server.properties```. 
+Por exemplo : 
  
         server.host=myhost.com
 
-IP is not supported, this is the limitation of Let's Encrypt. Also have in mind that ```myhost.com``` 
-should be resolved by public DNS severs.
+IP não é suportado, esta é a limitação do Let's Encrypt. Tenha também em mente que o domínio myhost.com deve ser resolvido por servidores DNS públicos.
         
-+ Add ```contact.email``` property in ```server.properties```. For example : 
++ Adicione a propriedade ```contact.email``` em ```server.properties```. Por exemplo : 
  
         contact.email=test@gmail.com
         
-+ You need to start server on port 80 (requires root or admin rights) or 
-make [port forwarding](#port-forwarding-for-https-api) to default Blynk HTTP port - 8080.
++ Você precisa iniciar o servidor na porta 80 (requer direitos de root ou administrador) ou fazer [redirecionamento de porta](#redirecionamento-de-porta-para-api-https) para a porta padrão Blynk HTTP - 8080.
 
-That's it! Run server as regular and certificates will be generated automatically.
+É isso! Execute o servidor normalmente e os certificados serão gerados automaticamente..
 
-![](https://gifyu.com/images/certs.gif)
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHBhMWMzemR5b3RjenF4ZmtrMXZuMWFocnUzaWg4YjFxcDVtNzV0eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nCRkXBaeCPyeX1fkrc/giphy.gif)
 
 ### Gerar Certificados Manuais Let's Encrypt SSL/TLS
 
-+ First install [certbot](https://github.com/certbot/certbot) on your server (machine where you going to run Blynk Server)
++ Primeiro instale o [certbot](https://github.com/certbot/certbot) no seu servidor (máquina onde você vai rodar o Blynk Server)
 
         wget https://dl.eff.org/certbot-auto
         chmod a+x certbot-auto
         
-+ Generate and verify certificates (your server should be connected to internet and have open 80/443 ports)
++ Gere e verifique os certificados (seu servidor deve estar conectado à internet e ter portas 80/443 abertas)
 
-        ./certbot-auto certonly --agree-tos --email YOUR_EMAIL --standalone -d YOUR_HOST
+        ./certbot-auto certonly --agree-tos --email SEU_EMAIL --standalone -d SEU_HOST
 
-For example 
+Por exemplo 
 
         ./certbot-auto certonly --agree-tos --email pupkin@blynk.cc --standalone -d blynk.cc
 
-+ Then add to your ```server.properties``` file (in folder with server.jar)
++ Em seguida, adicione ao seu arquivo ```server.properties``` (na pasta onde está o server.jar)
 
-        server.ssl.cert=/etc/letsencrypt/live/YOUR_HOST/fullchain.pem
-        server.ssl.key=/etc/letsencrypt/live/YOUR_HOST/privkey.pem
+        server.ssl.cert=/etc/letsencrypt/live/SEU_HOST/fullchain.pem
+        server.ssl.key=/etc/letsencrypt/live/SEU_HOST/privkey.pem
         server.ssl.key.pass=
         
 ### Gerar Certificado Auto-Asssinado SSL
 
-+ Generate self-signed certificate and key
++ Gerar certificado e chave autoassinados (self-signed)
 
         openssl req -x509 -nodes -days 1825 -newkey rsa:2048 -keyout server.key -out server.crt
         
-+ Convert server.key to PKCS#8 private key file in PEM format
++ Converta server.key em arquivo de chave privada PKCS#8 no formato PEM
 
         openssl pkcs8 -topk8 -v1 PBE-SHA1-2DES -in server.key -out server.enc.key
         
-If you connect hardware with [USB script](https://github.com/blynkkk/blynk-library/tree/master/scripts) you have to provide an option '-s' pointing to "common name" (hostname) you did specified during certificate generation.
++ ou
+
+        openssl pkcs8 -topk8 -inform PEM -outform PEM -in server.key -out server.pem
+
+Se você conectar hardware com o [script USB](https://github.com/Josafa2018/blynk-library/tree/master/scripts) deverá fornecer uma opção '-s' apontando para o "nome comum" (hostname) que você especificou durante a geração do certificado.
         
-As an output you'll retrieve server.crt and server.pem files that you need to provide for server.ssl properties.
+Com resultado você obterá os arquivos server.crt e server.pem necessários para configuração das propriedades `server.ssl`.
 
 ### Instalação do Java no Ubuntu
 
@@ -623,26 +618,21 @@ As an output you'll retrieve server.crt and server.pem files that you need to pr
         && sudo apt-get update -q \
         && sudo apt install -y openjdk-11-jdk
         
-or if above doesn't work:
-
-        sudo apt-add-repository ppa:webupd8team/java
-        sudo apt-get update
-        sudo apt-get install oracle-java8-installer
         
-### Port forwarding for HTTP/S API
+### Redirecionamento de Porta para API HTTP/S
 
         sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
         sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 9443
 
-### Enabling QR generation on server
+### Habilitar geração de QR code no servidor
         
         sudo apt-get install libxrender1
 
-### Behind wifi router
-If you want to run Blynk server behind WiFi-router and want it to be accessible from the Internet, you have to add port-forwarding rule on your router. This is required in order to forward all of the requests that come to the router within the local network to Blynk server.
+### Atrás de Roteador WIFI
+Se você deseja executar o servidor Blynk atrás de um roteador WiFi e deseja que ele seja acessível pela Internet, você deve adicionar uma regra de redirecionamento de porta em seu roteador. Isso é necessário para encaminhar todas as solicitações que chegam ao roteador na rede local para o servidor Blynk.
 
-### How to build
-Blynk has a bunch of integration tests that require DB, so you have to skip tests during build.
+### Como Construir (build)
+Blynk tem vários testes de integração que requerem banco de dados, então você precisa pular os testes durante a construção..
 
         mvn clean install -Dmaven.test.skip=true
         
@@ -651,50 +641,51 @@ When hardware connects to Blynk cloud it opens either keep-alive ssl/tls connect
 tcp/ip connection on port 8080. Blynk app opens mutual ssl/tls connection to Blynk Cloud on port 443 (9443 for local servers).
 Blynk Cloud is responsible for forwarding messages between hardware and app. In both (app and hardware) connections Blynk uses 
 own binary protocol described below.
+Quando o hardware se conecta ao servidor Blynk Cloud, ele abre uma conexão keep-alive SSL/TLS na porta 443 (9443 para servidores locais) ou uma conexão keep-alive TCP/IP simples na porta 8080. O aplicativo Blynk abre uma conexão SSL/TLS mútua com a Blynk Cloud na porta 443 (9443 para servidores locais). Blynk Cloud é responsável por encaminhar as mensagens entre o hardware e o aplicativo. Em ambas as conexões (aplicativo e hardware), o Blynk usa protocolo binário próprio descrito abaixo.
 
 ### Protocolo Blynk
 
 
-#### Hardware side protocol
+#### Protocolo do Lado do Hardware
 
-Blynk transfers binary messages between the server and the hardware with the following structure:
+O Blynk transfere mensagens binárias entre o servidor e o hardware com a seguinte estrutura:
 
-| Command       | Message Id    | Length/Status   | Body     |
-|:-------------:|:-------------:|:---------------:|:--------:|
-| 1 byte        | 2 bytes       | 2 bytes         | Variable |
+| Comando | Id Mensagem | Tamanho/Status |  Corpo   |
+|:-------:|:-----------:|:--------------:|:--------:|
+| 1 byte  |   2 bytes   |    2 bytes     | Variável |
 
-Command and Status definitions: [BlynkProtocolDefs.h](https://github.com/Peterkn2001/blynk-library/blob/7e942d661bc54ded310bf5d00edee737d0ca44d7/src/Blynk/BlynkProtocolDefs.h)
-
-
-#### Mobile app side protocol
-
-Blynk transfers binary messages between the server and mobile app with the following structure:
-
-| Command       | Message Id    | Length/Status   | Body     |
-|:-------------:|:-------------:|:---------------:|:--------:|
-| 1 byte        | 2 bytes       | 4 bytes         | Variable |
+Definições de comando e status: [BlynkProtocolDefs.h](https://github.com/Josafa2018/blynk-library/blob/7e942d661bc54ded310bf5d00edee737d0ca44d7/src/Blynk/BlynkProtocolDefs.h)
 
 
-#### Websockets web side protocol
+#### Mobile do Lado do Aplicativo Móvel
 
-Blynk transfers binary messages between the server and websockets (for web) with the following structure:
+O Blynk transfere mensagens binárias entre o servidor e o aplicativo móvel com a seguinte estrutura:
 
-| Websocket header   | Command       | Message Id    | Body     |
-|:------------------:|:-------------:|:-------------:|:--------:|
-|                    | 1 byte        | 2 bytes       | Variable |
+| Comando | Id Mensagem | Tamanho/Status |   Body   |
+|:-------:|:-----------:|:--------------:|:--------:|
+| 1 byte  |    2 bytes  |    4 bytes     | Variável |
 
 
-When command code == 0, than message structure is next:
+#### Protocolo do Lado Web Websockets
 
-| Websocket header   | Command       | Message Id    | Response code |
-|:------------------:|:-------------:|:-------------:|:-------------:|
-|                    | 1 byte        | 2 bytes       | 4 bytes       |
+O Blynk transfere mensagens binárias entre o servidor e websockets (para web) com a seguinte estrutura:
 
-[Possible response codes](https://github.com/Peterkn2001/blynk-server/blob/master/server/core/src/main/java/cc/blynk/server/core/protocol/enums/Response.java#L12).
-[Possible command codes](https://github.com/Peterkn2001/blynk-server/blob/master/server/core/src/main/java/cc/blynk/server/core/protocol/enums/Command.java#L12)
+| Cabeçalho Websocket | Comando | Id Mensagem |   Body   |
+|:-------------------:|:-------:|:-----------:|:--------:|
+|                     | 1 byte  |    2 bytes  | Variável |
 
-Message Id and Length are [big endian](http://en.wikipedia.org/wiki/Endianness#Big-endian).
-Body has a command-specific format.
 
-## Licensing
-[GNU GPL license](https://github.com/Peterkn2001/blynk-server/blob/master/license.txt)
+Quando o código do comando == 0, a estrutura da mensagem é a próxima:
+
+| Cabeçalho Websocket | Comando | Id Mensagem | Código Resposta |
+|:-------------------:|:-------:|:-----------:|:---------------:|
+|                     | 1 byte  |   2 bytes   |     4 bytes     |
+
+[Possíveis códigos de resposta](https://github.com/Josafa2018/blynk-server-legacy/blob/master/server/core/src/main/java/cc/blynk/server/core/protocol/enums/Response.java#L12).
+[Possíveis códigos de comando](https://github.com/Josafa2018/blynk-server-legacy/blob/master/server/core/src/main/java/cc/blynk/server/core/protocol/enums/Command.java#L12)
+
+O Id da mensagem e o tamanho são [big endian](http://en.wikipedia.org/wiki/Endianness#Big-endian).
+Body tem um formato específico para cada comando.
+
+## Licença
+[GNU GPL license](https://github.com/Josafa2018/blynk-server-legacy/blob/master/license.txt)
