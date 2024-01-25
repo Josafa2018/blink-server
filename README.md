@@ -65,121 +65,123 @@ Blynk é um servidor Java open-source baseado em [Netty](https://github.com/nett
 [![GitHub download](https://img.shields.io/github/downloads/Josafa2018/blynk-server-legacy/total.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
 
 ## Requisitos
-- Java 8/11 required (OpenJDK, Oracle) 
-- Any OS that can run java 
-- At least 30 MB of RAM (could be less with tuning)
-- Open ports 9443 (for app and hardware with ssl), 8080 (for hardware without ssl)
+- Necessário Java 8/11 (OpenJDK, Oracle) 
+- Qualquer sistema operacional que possa executar java 
+- Pelo menos 30 MB de RAM (pode ser menos com ajuste)
+- Portas abertas 9443 (para aplicativos e hardware com ssl), 8080 (para hardware sem ssl)
 
-[Ubuntu java installation instruction](#install-java-for-ubuntu).
+[Instalação do Java no Ubuntu](#instalação-do-java-no-ubuntu).
 
-For Windows download Java [here](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) and install. 
+Para Windows baixe o Java [aqui](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) e instale. 
 
 ## Configuração Rápida do Servidor
 
-+ Make sure you are using Java 11
++ Certifique-se de estar usando Java 11
 
         java -version
         Output: java version "11"
 
-+ Run the server on default 'hardware port 8080' and default 'application port 9443' (SSL port)
++ Execute o servidor nas portas padrão '8080 para hardware' e '9443 para aplicativos' (porta SSL)
 
-        java -jar server-0.41.16.jar -dataFolder /path
+        java -jar server-0.41.18.jar -dataFolder /path
         
-That's it! 
+É isso! 
 
-**NOTE: ```/path``` should be real existing path to folder where you want to store all your data.**
+**NOTA: ```/path``` deve ser o caminho para uma pasta existente onde você deseja armazenar todos os seus dados.**
 
-+ As an output you should see something like that:
++ Como saída você deverá ver algo assim:
 
         Blynk Server successfully started.
         All server output is stored in current folder in 'logs/blynk.log' file.
         
 ### Habilitando Email no Servidor
 
-### NOTE - From May 30th 2022 Google has stopped allowing less secure applications on personal Gmail accounts, so email from the Blynk local server will not be possible in most cases.
+### NOTA 1 - A partir de 30 de maio de 2022, o Google parou de permitir aplicativos menos seguros em contas pessoais do Gmail, portanto, o e-mail do servidor local Blynk não será possível na maioria dos casos.
 
-To enable mail notifications on Local server you need to provide your own mail credentials. Create file `mail.properties` within same folder where `server.jar` is.
-Mail properties:
+### NOTA 2 - Para utilização de uma conta Gmail é nececessário ativar verificação de duas etapas nas configurações de sua conta Gmail, e em seguida acessar o link `Verificação de duas etapas` ir até a opção `Senhas de app` e criar uma senha para ser usada nas configuração abaixo.
+
+Para ativar notificações por email no Servidor Local, você precisa fornecer as credenciais de email. Crie um arquivo `mail.properties` na mesma pasta onde `server.jar` está. Configurações do Email:
 
         mail.smtp.auth=true
         mail.smtp.starttls.enable=true
         mail.smtp.host=smtp.gmail.com
         mail.smtp.port=587
-        mail.smtp.username=YOUR_EMAIL_HERE
-        mail.smtp.password=YOUR_EMAIL_PASS_HERE
+        mail.smtp.username=SEU_EMAIL_AQUI
+        mail.smtp.password=SUA_SENHA_DE_APP_AQUI
         
-Find example [here](https://github.com/Peterkn2001/blynk-server/blob/master/server/notifications/email/src/main/resources/mail.properties).
+Encontre um exemlo [aqui](https://github.com/Josafa2018/blynk-server-legacy/blob/master/server/notifications/email/src/main/resources/mail.properties).
 
-WARNING : only gmail accounts are allowed.
+AVISO : somente contas do Gmail são permitidas.
 
 NOTE : you'll need to setup Gmail to allow less secure applications.
-Go [here](https://www.google.com/settings/security/lesssecureapps) and then click "Allow less secure apps".
+NOTA: você precisará configurar o Gmail e criar senha de aplicativo.
+Acesse [here](https://support.google.com/accounts/answer/185833?hl=pt-BR) e terá informações de como criar senha de app.
 
 ## Configuração Rápida do Servidor no Raspberry PI
 
-+ Login to Raspberry Pi via ssh;
-+ Install java 8: 
++ Faça login no Raspberry Pi via ssh;
++ Instale o java 11: 
         
-        sudo apt install openjdk-8-jdk openjdk-8-jre
+        sudo apt install openjdk-11-jdk openjdk-11-jre
         
-+ Make sure you are using Java 8
++ Certifique-se de está usando o Java 11
 
         java -version
-        Output: java version "1.8"
+        Output: java version "11"
         
-+ Download Blynk server jar file (or manually copy it to Raspberry Pi via ssh and scp command): 
++ Baixe o arquivo jar do servidor Blynk (ou copie-o manualmente para o Raspberry Pi via comando ssh e scp): 
    
-        wget "https://github.com/Peterkn2001/blynk-server/releases/download/v0.41.16/server-0.41.16-java8.jar"
+        wget "https://github.com/Josafa2018/blynk-server-legacy/releases/download/v0.41.16/server-0.41.18.jar"
 
-+ Run the server on default 'hardware port 8080' and default 'application port 9443' (SSL port)
++ Execute o servidor na porta padrão '8080 para hardware' e '9443 para aplicativos' (porta SSL)
 
-        java -jar server-0.41.16-java8.jar -dataFolder /home/pi/Blynk
+        java -jar server-0.41.18.jar -dataFolder /home/pi/Blynk
         
-That's it! 
+É isso! 
 
-+ As output you will see something like that:
++ Na saída você verá algo assim:
 
         Blynk Server successfully started.
         All server output is stored in current folder in 'logs/blynk.log' file.
 
 ## Configuração do Contêiner Docker
 
-### Quick Launch
+### Inicialização rápida
 
-+ Install [Docker](https://docs.docker.com/install/)
-+ Run Docker container
++ Instale o [Docker](https://docs.docker.com/install/)
++ Execute o contêiner Docker
 
         docker run -p 8080:8080 -p 9443:9443 mpherg/blynk-server
 
-### Quick Launch on Raspberry Pi
+### Inicialização rápida no Raspberry Pi
 
-+ Install [Docker](https://docs.docker.com/engine/install/debian/)
-+ Run Docker container
++ Instale [Docker](https://docs.docker.com/engine/install/debian/)
++ Execute o contêiner Docker
 
         docker run -p 8080:8080 -p 9443:9443 linuxkonsult/rasbian-blynk
 
-### Full customisation
+### Personalização completa
 
-+ Check [README](server/Docker) in docker folder
++ Verifique o [README](server/Docker) na pasta docker
 
 
 
 
 ## Habilitando a Reinicialização Automática do Servidor em Sistemas Linux
         
-+ To enable server auto restart find /etc/rc.local file and add:
++ Para ativar a reinicialização automática do servidor, encontre o arquivo /etc/rc.local e adicione:
 
-        java -jar /home/pi/server-0.41.16-java8.jar -dataFolder /home/pi/Blynk &
+        java -jar /home/pi/server-0.41.18.jar -dataFolder /home/pi/Blynk &
         
-+ Or if the approach above doesn't work, execute 
++ Ou se a abordagem acima não funcionar, execute 
        
         crontab -e
 
-add the following line
+adicione a seguinte linha:
 
-        @reboot java -jar /home/pi/server-0.41.16-java8.jar -dataFolder /home/pi/Blynk &
+        @reboot java -jar /home/pi/server-0.41.18.jar -dataFolder /home/pi/Blynk &
         
-save and exit.
+salvafr e sair.
 
 ## Habilitando a Reinicialização Automática do Servidor no Windows
 
@@ -231,7 +233,7 @@ Please **do not** revert your server to lower versions. You may loose all of you
 
 + Start new server [as usual](#quick-local-server-setup)
                 
-## Configurando App e sketch para Servidor
+## Configurando App e Sketch para Servidor
 
 + Specify custom server path in your application
 
@@ -616,7 +618,7 @@ If you connect hardware with [USB script](https://github.com/blynkkk/blynk-libra
         
 As an output you'll retrieve server.crt and server.pem files that you need to provide for server.ssl properties.
 
-### Instalação Java no Ubuntu
+### Instalação do Java no Ubuntu
 
         sudo add-apt-repository ppa:openjdk-r/ppa \
         && sudo apt-get update -q \
