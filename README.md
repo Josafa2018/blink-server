@@ -21,7 +21,7 @@ Se precisar de mais informações, acesse estes links:
 * [Gerador de Exemplos Blynk](https://examples.blynk.cc)
 * [Facebook](http://www.fb.com/blynkapp)
 * [Twitter](http://twitter.com/blynk_app)
-* [Blynk library](https://github.com/Josafa2018/blynk-library)
+* [Blynk Library](https://github.com/Josafa2018/blynk-library)
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
 ![Configurações do Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash_settings.png)
@@ -61,7 +61,7 @@ Blynk é um servidor Java open-source baseado em [Netty](https://github.com/nett
 
 **Baixe a versão mais recente do servidor [aqui](https://github.com/Josafa2018/blynk-server-legacy/releases).**
 
-[![GitHub version](https://img.shields.io/github/release/Josafa2018/blynk-server.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
+[![GitHub version](https://img.shields.io/github/release/Josafa2018/blynk-server-legacy.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
 [![GitHub download](https://img.shields.io/github/downloads/Josafa2018/blynk-server-legacy/total.svg)](https://github.com/Josafa2018/blynk-server-legacy/releases/latest)
 
 ## Requisitos
@@ -236,8 +236,8 @@ Por favor **não** everta seu servidor para versões anteriores. Você pode perd
 
 + Especifique o caminho do servidor personalizado em seu aplicativo
 
-![Custom server icon](https://github.com/Josafa2018/blynk-server-library/blob/master/docs/login.png)
-![Server properties menu](https://github.com/Josafa2018/blynk-server-library/blob/master/docs/custom.png)
+![Custom server icon](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/login.png)
+![Server properties menu](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/custom.png)
 
 + Altere seu sketch Ethernet de
 
