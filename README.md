@@ -25,9 +25,9 @@ Se precisar de mais informações, acesse estes links:
 * [Kickstarter](https://www.kickstarter.com/projects/167134865/blynk-build-an-app-for-your-arduino-project-in-5-m/description)
 
 ![Configurações do Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash_settings.png)
-![Widgets Box](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/widgets_box.png)
-![Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash.png)
-![Dashboard2](https://github.com/Josafa2018/blynk-server-legacy/blob/master/docs/overview/dash2.png)
+![Widgets Box](/blob/master/docs/overview/widgets_box.png)
+![Dashboard](https://github.com/Josafa2018/blynk-server-legacy/blob/main/docs/overview/dash.png)
+![Dashboard2](https://github.com/Josafa2018/blynk-server-legacy/blob/main/docs/overview/dash2.png)
 
 # Conteúdo
 
